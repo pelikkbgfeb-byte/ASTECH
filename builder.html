@@ -3,88 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Builder CV - PT Solusi Anugerah Teknologi</title>
+    <title>Builder CV Pro - PT Solusi Anugerah Teknologi</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Library html2canvas untuk unduh gambar CV secara instan & rapi -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        /* Standar ATS: Font aman & Margin 1 inci (2.54 cm) */
-        @media print {
-            @page {
-                size: A4 portrait;
-                margin: 2.54cm;
-            }
-            body, html {
-                width: 210mm;
-                height: 297mm;
-                margin: 0 !important;
-                padding: 0 !important;
-                background: white !important;
-            }
-            body * {
-                visibility: hidden;
-            }
-            #cv-preview, #cv-preview * {
-                visibility: visible;
-            }
-            #cv-preview {
-                position: absolute !important;
-                left: 0 !important;
-                top: 0 !important;
-                width: 210mm !important;
-                height: 297mm !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                box-shadow: none !important;
-                border: none !important;
-                background: white !important;
-                z-index: 9999;
-            }
-            .no-print {
-                display: none !important;
-            }
+        /* Kontainer CV utama agar proporsional menyerupai kertas A4 */
+        #cv-preview {
+            width: 100%;
+            max-width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            box-sizing: border-box;
         }
     </style>
 </head>
 <body class="bg-slate-100 min-h-screen font-sans text-slate-800">
 
     <!-- NAVBAR KHUSUS BUILDER -->
-    <header class="bg-white border-b border-slate-200 sticky top-0 z-50 no-print">
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <a href="index.html" class="text-xs font-bold text-emerald-600 hover:underline">&larr; Kembali ke Beranda</a>
+                <a href="index.html" class="text-xs font-bold text-emerald-600 hover:underline">&larr; Beranda</a>
                 <span class="text-slate-300">|</span>
-                <span class="text-xs font-extrabold text-slate-800">PT SOLUSI ANUGRAH TEKNOLOGI - BUILDER</span>
+                <span class="text-xs font-extrabold text-slate-800">PT SAT - CV BUILDER</span>
             </div>
             <div>
-                <button onclick="window.print()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md transition">
-                    🖨️ Cetak / Simpan PDF
+                <button onclick="unduhCV()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md transition flex items-center gap-1.5 cursor-pointer">
+                    📥 Unduh CV (Gambar A4)
                 </button>
             </div>
         </div>
     </header>
 
     <!-- KONTROL UTAMA -->
-    <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 no-print">
+    <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
         
-        <!-- KOLOM KIRI: FORM INPUT -->
+        <!-- KOLOM KIRI: FORM PENGATURAN & INPUT -->
         <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-6">
-            <h2 class="text-lg font-black text-slate-900 border-b pb-3">Pilih Template & Isi Data CV</h2>
+            <h2 class="text-lg font-black text-slate-900 border-b pb-3">Pengaturan & Data CV</h2>
             
+            <!-- PILIH TEMPLATE -->
             <div>
-                <label class="block text-xs font-bold text-slate-700 mb-2">Pilih Desain Template</label>
+                <label class="block text-xs font-bold text-slate-700 mb-2">Pilih Desain Tata Letak</label>
                 <div class="grid grid-cols-2 gap-3">
-                    <button type="button" onclick="gantiTemplate('modern')" id="btn-modern" class="p-3 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition">
+                    <button type="button" onclick="gantiTemplate('modern')" id="btn-modern" class="p-2.5 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition">
                         Modern ATS
                     </button>
-                    <button type="button" onclick="gantiTemplate('klasik')" id="btn-klasik" class="p-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition">
+                    <button type="button" onclick="gantiTemplate('klasik')" id="btn-klasik" class="p-2.5 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition">
                         Klasik Formal
                     </button>
                 </div>
             </div>
 
-            <div class="space-y-4 pt-2">
+            <!-- PILIH JENIS FONT -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-2">Pilih Jenis Font Standar ATS</label>
+                <select id="pilih-font" onchange="gantiFont()" class="w-full px-3 py-2.5 border rounded-xl text-xs font-bold bg-slate-50 outline-none focus:ring-2 focus:ring-emerald-500">
+                    <option value="font-sans">Calibri / Inter (Modern Bersih)</option>
+                    <option value="font-serif">Times New Roman (Klasik Korporat)</option>
+                    <option value="font-mono">Arial / Helvetica (Standar ATS Tegas)</option>
+                </select>
+            </div>
+
+            <div class="space-y-4 pt-2 border-t">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap & Gelar (14-16 pt)</label>
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap & Gelar</label>
                     <input type="text" id="input-nama" placeholder="Contoh: Budi Santoso, S.Kom" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
@@ -116,39 +101,39 @@
             </div>
         </div>
 
-        <!-- KOLOM KANAN: LIVE PREVIEW (Standar Margin 1 Inci / 2.54cm) -->
-        <div class="flex justify-center items-start">
-            <div id="cv-preview" class="w-full max-w-[210mm] min-h-[297mm] bg-white p-[2.54cm] shadow-xl border border-slate-200 font-sans text-slate-900 space-y-4">
+        <!-- KOLOM KANAN: LIVE PREVIEW KERTAS A4 -->
+        <div class="flex justify-center items-start overflow-x-auto pb-6">
+            <div id="cv-preview" class="bg-white p-10 shadow-xl border border-slate-200 font-sans text-slate-900 space-y-5 rounded-xl">
                 
-                <!-- HEADER (Nama 15pt, Heading 12pt, Isi 11pt, Spasi 1.15) -->
-                <div id="prev-header-container" class="text-center border-b-2 border-slate-900 pb-3">
-                    <h1 id="prev-nama" class="text-[15pt] font-bold uppercase tracking-wide text-slate-400 leading-snug">NAMA LENGKAP</h1>
-                    <p id="prev-posisi" class="text-[12pt] font-semibold uppercase tracking-wider text-slate-400 mt-1">POSISI / PROFESI</p>
-                    <p id="prev-kontak" class="text-[10pt] text-slate-400 mt-1">Kota | No HP | Email</p>
+                <!-- HEADER CV -->
+                <div id="prev-header-container" class="text-center border-b-2 border-slate-900 pb-4">
+                    <h1 id="prev-nama" class="text-[16pt] font-bold uppercase tracking-wider text-slate-400">NAMA LENGKAP</h1>
+                    <p id="prev-posisi" class="text-[11pt] font-semibold uppercase tracking-widest text-slate-400 mt-1">POSISI / PROFESI</p>
+                    <p id="prev-kontak" class="text-[10pt] text-slate-500 mt-1">Kota | No HP | Email</p>
                 </div>
 
                 <!-- Profil -->
                 <div>
-                    <h3 id="prev-heading-profil" class="text-[12pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Tentang Saya</h3>
-                    <p id="prev-profil" class="text-[11pt] leading-[1.15] text-slate-400 italic">Belum diisi...</p>
+                    <h3 id="prev-heading-profil" class="text-[11pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Tentang Saya</h3>
+                    <p id="prev-profil" class="text-[10.5pt] leading-[1.2] text-slate-400 italic">Belum diisi...</p>
                 </div>
 
                 <!-- Pengalaman -->
                 <div>
-                    <h3 id="prev-heading-pengalaman" class="text-[12pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Pengalaman Kerja</h3>
-                    <div id="prev-pengalaman" class="text-[11pt] leading-[1.15] text-slate-400 italic whitespace-pre-line">Belum diisi...</div>
+                    <h3 id="prev-heading-pengalaman" class="text-[11pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Pengalaman Kerja</h3>
+                    <div id="prev-pengalaman" class="text-[10.5pt] leading-[1.2] text-slate-400 italic whitespace-pre-line">Belum diisi...</div>
                 </div>
 
                 <!-- Pendidikan -->
                 <div>
-                    <h3 id="prev-heading-pendidikan" class="text-[12pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Pendidikan</h3>
-                    <p id="prev-pendidikan" class="text-[11pt] leading-[1.15] text-slate-400 italic">Belum diisi...</p>
+                    <h3 id="prev-heading-pendidikan" class="text-[11pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Pendidikan</h3>
+                    <p id="prev-pendidikan" class="text-[10.5pt] leading-[1.2] text-slate-400 italic">Belum diisi...</p>
                 </div>
 
                 <!-- Keahlian -->
                 <div>
-                    <h3 id="prev-heading-keahlian" class="text-[12pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Keahlian & Bahasa</h3>
-                    <p id="prev-keahlian" class="text-[11pt] leading-[1.15] text-slate-400 italic">Belum diisi...</p>
+                    <h3 id="prev-heading-keahlian" class="text-[11pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Keahlian & Bahasa</h3>
+                    <p id="prev-keahlian" class="text-[10.5pt] leading-[1.2] text-slate-400 italic">Belum diisi...</p>
                 </div>
 
             </div>
@@ -156,7 +141,7 @@
 
     </main>
 
-    <!-- SCRIPT LOGIKA -->
+    <!-- SCRIPT LOGIKA LIVE PREVIEW & DOWNLOAD GAMBAR -->
     <script>
         function gantiTemplate(jenis) {
             const headerContainer = document.getElementById('prev-header-container');
@@ -164,14 +149,20 @@
             const btnKlasik = document.getElementById('btn-klasik');
 
             if (jenis === 'modern') {
-                headerContainer.className = "text-center border-b-2 border-slate-900 pb-3";
-                btnModern.className = "p-3 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition";
-                btnKlasik.className = "p-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition";
+                headerContainer.className = "text-center border-b-2 border-slate-900 pb-4";
+                btnModern.className = "p-2.5 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition";
+                btnKlasik.className = "p-2.5 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition";
             } else {
-                headerContainer.className = "border-l-4 border-slate-900 pl-3 py-1 text-left";
-                btnKlasik.className = "p-3 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition";
-                btnModern.className = "p-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition";
+                headerContainer.className = "border-l-4 border-slate-900 pl-4 py-1 text-left";
+                btnKlasik.className = "p-2.5 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition";
+                btnModern.className = "p-2.5 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition";
             }
+        }
+
+        function gantiFont() {
+            const pilihan = document.getElementById('pilih-font').value;
+            const previewCard = document.getElementById('cv-preview');
+            previewCard.className = `bg-white p-10 shadow-xl border border-slate-200 text-slate-900 space-y-5 rounded-xl ${pilihan}`;
         }
 
         function updatePreview() {
@@ -191,26 +182,38 @@
             const elPendidikan = document.getElementById('prev-pendidikan');
             const elKeahlian = document.getElementById('prev-keahlian');
 
-            if(nama) { elNama.innerText = nama; elNama.className = "text-[15pt] font-bold uppercase tracking-wide text-slate-900 leading-snug"; } 
-            else { elNama.innerText = "NAMA LENGKAP"; elNama.className = "text-[15pt] font-bold uppercase tracking-wide text-slate-400 leading-snug"; }
+            if(nama) { elNama.innerText = nama; elNama.className = "text-[16pt] font-bold uppercase tracking-wider text-slate-900"; } 
+            else { elNama.innerText = "NAMA LENGKAP"; elNama.className = "text-[16pt] font-bold uppercase tracking-wider text-slate-400"; }
 
-            if(posisi) { elPosisi.innerText = posisi; elPosisi.className = "text-[12pt] font-semibold uppercase tracking-wider text-slate-700 mt-1"; } 
-            else { elPosisi.innerText = "POSISI / PROFESI"; elPosisi.className = "text-[12pt] font-semibold uppercase tracking-wider text-slate-400 mt-1"; }
+            if(posisi) { elPosisi.innerText = posisi; elPosisi.className = "text-[11pt] font-semibold uppercase tracking-widest text-slate-700 mt-1"; } 
+            else { elPosisi.innerText = "POSISI / PROFESI"; elPosisi.className = "text-[11pt] font-semibold uppercase tracking-widest text-slate-400 mt-1"; }
 
             if(kontak) { elKontak.innerText = kontak; elKontak.className = "text-[10pt] text-slate-600 mt-1"; } 
             else { elKontak.innerText = "Kota | No HP | Email"; elKontak.className = "text-[10pt] text-slate-400 mt-1"; }
 
-            if(profil) { elProfil.innerText = profil; elProfil.className = "text-[11pt] leading-[1.15] text-slate-800"; } 
-            else { elProfil.innerText = "Belum diisi..."; elProfil.className = "text-[11pt] leading-[1.15] text-slate-400 italic"; }
+            if(profil) { elProfil.innerText = profil; elProfil.className = "text-[10.5pt] leading-[1.2] text-slate-800"; } 
+            else { elProfil.innerText = "Belum diisi..."; elProfil.className = "text-[10.5pt] leading-[1.2] text-slate-400 italic"; }
 
-            if(pengalaman) { elPengalaman.innerText = pengalaman; elPengalaman.className = "text-[11pt] leading-[1.15] text-slate-800 whitespace-pre-line"; } 
-            else { elPengalaman.innerText = "Belum diisi..."; elPengalaman.className = "text-[11pt] leading-[1.15] text-slate-400 italic"; }
+            if(pengalaman) { elPengalaman.innerText = pengalaman; elPengalaman.className = "text-[10.5pt] leading-[1.2] text-slate-800 whitespace-pre-line"; } 
+            else { elPengalaman.innerText = "Belum diisi..."; elPengalaman.className = "text-[10.5pt] leading-[1.2] text-slate-400 italic"; }
 
-            if(pendidikan) { elPendidikan.innerText = pendidikan; elPendidikan.className = "text-[11pt] leading-[1.15] text-slate-800"; } 
-            else { elPendidikan.innerText = "Belum diisi..."; elPendidikan.className = "text-[11pt] leading-[1.15] text-slate-400 italic"; }
+            if(pendidikan) { elPendidikan.innerText = pendidikan; elPendidikan.className = "text-[10.5pt] leading-[1.2] text-slate-800"; } 
+            else { elPendidikan.innerText = "Belum diisi..."; elPendidikan.className = "text-[10.5pt] leading-[1.2] text-slate-400 italic"; }
 
-            if(keahlian) { elKeahlian.innerText = keahlian; elKeahlian.className = "text-[11pt] leading-[1.15] text-slate-800"; } 
-            else { elKeahlian.innerText = "Belum diisi..."; elKeahlian.className = "text-[11pt] leading-[1.15] text-slate-400 italic"; }
+            if(keahlian) { elKeahlian.innerText = keahlian; elKeahlian.className = "text-[10.5pt] leading-[1.2] text-slate-800"; } 
+            else { elKeahlian.innerText = "Belum diisi..."; elKeahlian.className = "text-[10.5pt] leading-[1.2] text-slate-400 italic"; }
+        }
+
+        // Fungsi otomatis render area CV menjadi gambar berkualitas tinggi dan langsung mendownloadnya
+        function unduhCV() {
+            const element = document.getElementById('cv-preview');
+            
+            html2canvas(element, { scale: 2, useCORS: true }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'CV-ATS-PT-SAT.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
         }
     </script>
 </body>
