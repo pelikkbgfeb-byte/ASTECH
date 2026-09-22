@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT Solusi Anugerah Teknologi - AI CV Builder Profesional</title>
+    <script src="ads.js" defer></script>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        @keyframes floatUpAndDown1 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        @keyframes floatUpAndDown2 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+        @keyframes floatUpAndDown3 {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        .animate-glow {
+            animation: pulseGlow 3s ease-in-out infinite;
+        }
+        .float-img-1 { animation: floatUpAndDown1 3.5s ease-in-out infinite; }
+        .float-img-2 { animation: floatUpAndDown2 4.2s ease-in-out infinite; }
+        .float-img-3 { animation: floatUpAndDown3 3.8s ease-in-out infinite; }
+        .whatsapp-float {
+            animation: bounceSlow 2s infinite ease-in-out;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen font-sans selection:bg-emerald-500 selection:text-white text-slate-800 relative">
+
+    <!-- TOMBOL WHATSAPP MENGAMBANG (UNTUK JASA ISI CV / MAGER) -->
+<a href="https://api.whatsapp.com/send?phone=6285823723246&text=Halo%20PT%20Solusi%20Anugerah%20Teknologi,%20saya%20mau%20order%20jasa%20pembuatan%20dan%20pengisian%20CV." 
+   target="_blank" 
+   class="whatsapp-float fixed bottom-6 right-6 z-50 bg-emerald-500 hover:bg-emerald-600 text-white p-4 rounded-full shadow-2xl flex items-center justify-center transition-all transform hover:scale-110 cursor-pointer"
+   title="Order Jasa Pembuatan CV via WhatsApp">
+    <!-- SVG Ikon WhatsApp -->
+    <svg class="w-7 h-7 fill-current" viewBox="0 0 24 24">
+        <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.124-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+</a>
+
+    <!-- NAVBAR -->
+    <header class="bg-white/90 backdrop-blur-md sticky top-0 z-50 border-b border-slate-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <!-- LOGO SVG CUSTOM -->
+                <svg class="w-10 h-10 text-emerald-600 animate-glow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                    <line x1="16" y1="13" x2="8" y2="13"></line>
+                    <line x1="16" y1="17" x2="8" y2="17"></line>
+                </svg>
+                <div>
+                    <span class="font-extrabold text-slate-900 tracking-wider text-sm sm:text-base block">PT SOLUSI ANUGRAH TEKNOLOGI</span>
+                    <span class="text-[10px] text-emerald-600 font-bold uppercase tracking-widest block">AI Career Platform</span>
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="#template-section" class="hidden md:inline-block text-xs font-semibold text-slate-600 hover:text-emerald-600 transition">Template</a>
+                <a href="#fitur" class="hidden md:inline-block text-xs font-semibold text-slate-600 hover:text-emerald-600 transition">Keunggulan</a>
+                <a href="#testimoni" class="hidden md:inline-block text-xs font-semibold text-slate-600 hover:text-emerald-600 transition">Testimoni</a>
+                <a href="builder.html" class="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-bold shadow-lg shadow-emerald-600/20 transition-all transform hover:-translate-y-0.5">Buat CV Sekarang</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION DENGAN 3 GAMBAR KECIL BERSEBELAHAN & NAIK TURUN HALUS -->
+    <section class="relative overflow-hidden bg-gradient-to-b from-emerald-50/70 via-white to-slate-50 py-16 md:py-24">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            
+            <!-- KANAN: 3 GAMBAR KECIL BERSEBELAHAN DI DALAM KOTAK PUTIH -->
+            <div class="order-1 lg:order-2 flex justify-center">
+                <div class="relative w-full max-w-xl p-6 rounded-3xl shadow-2xl border border-slate-200 bg-white flex items-center justify-center gap-3 overflow-hidden">
+                    <div class="absolute inset-0 bg-emerald-400/10 rounded-full blur-3xl -z-10 animate-glow"></div>
+                    
+                    <!-- GAMBAR 1 -->
+                    <div class="w-1/3 bg-slate-50 p-3 rounded-2xl border border-slate-100 shadow-sm float-img-1 flex flex-col items-center text-center">
+                        <svg class="w-full h-24" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="200" height="150" rx="12" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+                            <circle cx="35" cy="35" r="12" fill="#10B981"/>
+                            <rect x="55" y="30" width="100" height="8" rx="4" fill="#0F172A"/>
+                            <rect x="20" y="65" width="160" height="6" rx="3" fill="#F1F5F9"/>
+                            <rect x="20" y="80" width="130" height="6" rx="3" fill="#F1F5F9"/>
+                            <rect x="20" y="95" width="145" height="6" rx="3" fill="#F1F5F9"/>
+                        </svg>
+                        <span class="text-[10px] font-bold text-slate-700 mt-2">Lolos ATS</span>
+                    </div>
+
+                    <!-- GAMBAR 2 -->
+                    <div class="w-1/3 bg-slate-50 p-3 rounded-2xl border border-slate-100 shadow-sm float-img-2 flex flex-col items-center text-center">
+                        <svg class="w-full h-24" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="200" height="150" rx="12" fill="white" stroke="#10B981" stroke-width="2"/>
+                            <rect x="25" y="25" width="65" height="100" rx="8" fill="#F1F5F9" stroke="#10B981" stroke-width="2"/>
+                            <rect x="110" y="25" width="65" height="100" rx="8" fill="#F1F5F9" stroke="#CBD5E1" stroke-width="1"/>
+                            <rect x="35" y="40" width="45" height="6" rx="3" fill="#10B981"/>
+                            <rect x="120" y="40" width="45" height="6" rx="3" fill="#64748B"/>
+                        </svg>
+                        <span class="text-[10px] font-bold text-slate-700 mt-2">Multi Template</span>
+                    </div>
+
+                    <!-- GAMBAR 3 -->
+                    <div class="w-1/3 bg-slate-50 p-3 rounded-2xl border border-slate-100 shadow-sm float-img-3 flex flex-col items-center text-center">
+                        <svg class="w-full h-24" viewBox="0 0 200 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="200" height="150" rx="12" fill="white" stroke="#E2E8F0" stroke-width="2"/>
+                            <rect x="30" y="30" width="140" height="90" rx="8" fill="#F8FAFC"/>
+                            <rect x="50" y="50" width="100" height="8" rx="4" fill="#0F172A"/>
+                            <circle cx="140" cy="95" r="18" fill="#10B981"/>
+                            <path d="M132 95 L137 100 L148 88" stroke="white" stroke-width="3" stroke-linecap="round"/>
+                        </svg>
+                        <span class="text-[10px] font-bold text-slate-700 mt-2">Cetak PDF</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- KIRI: TEKS UTAMA -->
+            <div class="order-2 lg:order-1 space-y-6 text-center lg:text-left animate-fade-in">
+                <span class="inline-flex items-center px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-100 text-emerald-800 tracking-wide">
+                    ✨ Teknologi AI Pembuat CV #1 di Indonesia
+                </span>
+                <h1 class="text-4xl sm:text-6xl font-black text-slate-900 tracking-tight leading-tight">
+                    Wujudkan Karier Impian Bersama <span class="text-emerald-600">PT Solusi Anugerah Teknologi</span>
+                </h1>
+                <p class="text-base sm:text-lg text-slate-600 max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                    Tinggalkan cara lama membuat CV manual. Platform cerdas kami menyusun data Anda menjadi dokumen profesional berstandar ATS dalam hitungan detik.
+                </p>
+                <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="builder.html" class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-700 text-white text-base font-extrabold px-8 py-4 rounded-2xl shadow-xl shadow-emerald-600/30 transition-all transform hover:-translate-y-1 text-center">
+                        Mulai Buat CV Gratis
+                    </a>
+                    <a href="https://wa.me/6285823723246?text=Halo%20PT%20Solusi%20Anugerah%20Teknologi,%20saya%20mau%20order%20jasa%20pembuatan%20CV." target="_blank" class="w-full sm:w-auto bg-white hover:bg-slate-100 text-slate-700 border border-slate-200 text-base font-bold px-8 py-4 rounded-2xl shadow-sm transition-all text-center">
+                        Chat Jasa Isi CV (WA)
+                    </a>
+                </div>
+
+                <!-- STATISTIK MINI -->
+                <div class="pt-8 grid grid-cols-3 gap-4 border-t border-slate-200 max-w-lg mx-auto lg:mx-0">
+                    <div>
+                        <h4 class="text-2xl font-black text-slate-900">98%</h4>
+                        <p class="text-[11px] text-slate-500">Lolos ATS</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-black text-slate-900">25K+</h4>
+                        <p class="text-[11px] text-slate-500">Pengguna Aktif</p>
+                    </div>
+                    <div>
+                        <h4 class="text-2xl font-black text-slate-900">100%</h4>
+                        <p class="text-[11px] text-slate-500">Gratis & Cepat</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION SLIDER TEMPLATE CV (DENGAN DATA SIMULASI PROFESIONAL & TOMBOL < >) -->
+    <section id="template-section" class="py-20 bg-white border-y border-slate-200">
+        <div class="max-w-4xl mx-auto px-4 text-center space-y-3 mb-10">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">Pilihan Desain</span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900">Pilih Template CV Profesional</h2>
+            <p class="text-sm text-slate-600">Pilih salah satu dari template CV profesional untuk berbagai industri agar menarik HRD[span_0](start_span)[span_0](end_span).</p>
+        </div>
+
+        <div class="max-w-3xl mx-auto px-4 relative">
+            
+            <!-- KOTAK SLIDER TEMPLATE -->
+            <div id="slider-template" class="flex gap-6 overflow-x-auto no-scrollbar scroll-smooth snap-x snap-mandatory pb-4">
+                
+                <!-- TEMPLATE 1 -->
+                <div class="min-w-full snap-center bg-slate-50 p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-lg space-y-6">
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 text-left font-serif text-slate-900 space-y-4 shadow-sm">
+                        
+                        <!-- Header CV -->
+                        <div class="text-center border-b-2 border-slate-900 pb-3">
+                            <h3 class="text-xl font-bold uppercase tracking-wider">ARIF BUDIMAN, S.Kom</h3>
+                            <p class="text-[11px] font-semibold text-slate-700 uppercase mt-0.5">FULL STACK SOFTWARE ENGINEER</p>
+                            <p class="text-[10px] text-slate-600 mt-1">Jakarta Selatan, DKI Jakarta | 081234567890 | arif.budiman@email.com</p>
+                        </div>
+
+                        <!-- Ringkasan -->
+                        <div>
+                            <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-0.5 mb-1.5">Tentang Saya</h4>
+                            <p class="text-[10px] text-slate-800 leading-relaxed">Software Engineer berpengalaman dengan keahlian mendalam dalam pengembangan web modern, optimasi performa sistem, serta penerapan arsitektur bersih yang ramah pemindai ATS.</p>
+                        </div>
+
+                        <!-- Pengalaman Kerja -->
+                        <div>
+                            <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-0.5 mb-1.5">Pengalaman Kerja</h4>
+                            <div class="text-[10px] text-slate-800 space-y-1">
+                                <p class="font-bold">Senior Web Developer — PT Teknologi Nusantara (2023 - Sekarang)</p>
+                                <p>• Memimpin pengembangan aplikasi web responsif menggunakan React dan Tailwind CSS.</p>
+                                <p>• Mengoptimalkan performa load time website hingga 40% lebih cepat.</p>
+                            </div>
+                        </div>
+
+                        <!-- Pendidikan -->
+                        <div>
+                            <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-0.5 mb-1.5">Pendidikan</h4>
+                            <p class="text-[10px] text-slate-800"><strong>S1 Teknik Informatika</strong> — Universitas Indonesia (2019 - 2023)</p>
+                        </div>
+
+                        <!-- Keahlian -->
+                        <div>
+                            <h4 class="text-[11px] font-bold uppercase tracking-wider text-slate-900 border-b border-slate-400 pb-0.5 mb-1.5">Keahlian & Bahasa</h4>
+                            <p class="text-[10px] text-slate-800"><strong>Keahlian:</strong> JavaScript, TypeScript, React.js, Node.js, SQL, Git</p>
+                            <p class="text-[10px] text-slate-800"><strong>Bahasa:</strong> Indonesia (Native), Inggris (Advanced)</p>
+                        </div>
+
+                    </div>
+
+                    <div class="text-left space-y-1">
+                        <h3 class="text-lg font-bold text-slate-900">Bersih & Modern ATS</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Template CV sederhana namun tetap profesional[span_1](start_span)[span_1](end_span). Menampilkan pencapaian dan pengalaman dengan padat sehingga memberikan kesan yang mendalam[span_2](start_span)[span_2](end_span).</p>
+                    </div>
+                </div>
+
+                <!-- TEMPLATE 2 -->
+                <div class="min-w-full snap-center bg-slate-50 p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-lg space-y-6">
+                    <div class="bg-white p-6 sm:p-8 rounded-2xl border border-slate-200 text-left font-serif text-slate-900 space-y-4 shadow-sm">
+                        
+                        <!-- Header CV -->
+                        <div class="border-l-4 border-slate-900 pl-3 py-1">
+                            <h3 class="text-xl font-bold uppercase tracking-wider">RINA MELATI, S.E.</h3>
+                            <p class="text-[11px] font-semibold text-slate-700 uppercase">MARKETING & BUSINESS DEVELOPMENT</p>
+                            <p class="text-[10px] text-slate-600 mt-0.5">Bandung, Jawa Barat | 089876543210 | rina.melati@email.com</p>
+                        </div>
+
+                        <!-- Profil Singkat -->
+                        <div>
+                            <h4 class="text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1.5">Profil Singkat</h4>
+                            <p class="text-[10px] text-slate-800 leading-relaxed">Profesional di bidang pemasaran dengan rekam jejak terbukti dalam meningkatkan strategi penjualan, memperluas pangsa pasar, serta membangun hubungan baik dengan klien korporat.</p>
+                        </div>
+
+                        <!-- Riwayat Pengalaman -->
+                        <div>
+                            <h4 class="text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1.5">Riwayat Pengalaman</h4>
+                            <div class="text-[10px] text-slate-800 space-y-1">
+                                <p class="font-bold">Marketing Manager — PT Solusi Niaga Utama (2022 - Sekarang)</p>
+                                <p>• Merancang kampanye pemasaran digital yang menaikkan omzet hingga 30%.</p>
+                                <p>• Mengelola tim sales dan negosiasi kontrak kerja sama strategis.</p>
+                            </div>
+                        </div>
+
+                        <!-- Pendidikan -->
+                        <div>
+                            <h4 class="text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1.5">Pendidikan</h4>
+                            <p class="text-[10px] text-slate-800"><strong>S1 Manajemen Bisnis</strong> — Universitas Padjadjaran (2018 - 2022)</p>
+                        </div>
+
+                        <!-- Keahlian -->
+                        <div>
+                            <h4 class="text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1.5">Keahlian & Bahasa</h4>
+                            <p class="text-[10px] text-slate-800"><strong>Keahlian:</strong> Strategic Planning, Digital Marketing, Public Relations</p>
+                            <p class="text-[10px] text-slate-800"><strong>Bahasa:</strong> Indonesia, Inggris</p>
+                        </div>
+
+                    </div>
+
+                    <div class="text-left space-y-1">
+                        <h3 class="text-lg font-bold text-slate-900">Klasik Formal</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Gaya tradisional yang terstruktur rapi dengan aksen garis formal di sisi kiri, sangat cocok untuk instansi dan perkantoran.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- TOMBOL KONTROL GESER <> DAN TOMBOL PILIH -->
+            <div class="flex flex-col items-center gap-4 mt-6">
+                <div class="flex items-center gap-4">
+                    <button onclick="geserTemplate('kiri')" class="w-12 h-12 rounded-full bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-700 flex items-center justify-center font-bold text-lg shadow-md transition-all cursor-pointer">
+                        &lt;
+                    </button>
+                    <button onclick="geserTemplate('kanan')" class="w-12 h-12 rounded-full bg-slate-100 hover:bg-emerald-600 hover:text-white text-slate-700 flex items-center justify-center font-bold text-lg shadow-md transition-all cursor-pointer">
+                        &gt;
+                    </button>
+                </div>
+                <div class="pt-2">
+                    <a href="builder.html" class="inline-block bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg transition-all">
+                        Pilih Template CV
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SECTION FITUR UNGGULAN -->
+    <section id="fitur" class="py-20 max-w-7xl mx-auto px-4 md:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16 space-y-4">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">Keunggulan Platform Kami</span>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900">Kenapa Harus PT Solusi Anugerah Teknologi?</h2>
+            <p class="text-sm sm:text-base text-slate-600">Kami menghadirkan solusi teknologi mutakhir untuk mempermudah langkah awal Anda menembus dunia kerja.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 space-y-4 transition-all hover:-translate-y-1">
+                <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">⚡</div>
+                <h3 class="font-extrabold text-slate-900 text-xl">Format ATS-Friendly</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">Struktur tata letak dirancang khusus agar mudah dibaca oleh algoritma pemindai komputer HRD perusahaan modern tanpa kendala.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 space-y-4 transition-all hover:-translate-y-1">
+                <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">🎨</div>
+                <h3 class="font-extrabold text-slate-900 text-xl">Pilihan Template Profesional</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">Tersedia ragam template mulai dari Modern ATS hingga Klasik Formal yang bisa diganti seketika dalam satu klik mudah.</p>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 space-y-4 transition-all hover:-translate-y-1">
+                <div class="w-14 h-14 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center font-bold text-2xl shadow-inner">🖨️</div>
+                <h3 class="font-extrabold text-slate-900 text-xl">Ekspor PDF Instan</h3>
+                <p class="text-sm text-slate-600 leading-relaxed">Hasil akhir dokumen langsung siap diunduh ke format PDF berkualitas tinggi dengan ukuran standar kertas A4 siap cetak.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION TESTIMONI -->
+    <section id="testimoni" class="py-20 max-w-7xl mx-auto px-4 md:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+            <span class="text-xs font-bold uppercase tracking-widest text-emerald-600">Testimoni Pengguna</span>
+            <h2 class="text-3xl font-extrabold text-slate-900">Mereka yang Telah Membuktikan Keberhasilan</h2>
+            <p class="text-sm text-slate-600">Simak pengalaman nyata dari para profesional muda yang berhasil diterima kerja.</p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 space-y-4">
+                <div class="flex text-amber-400 text-sm">★★★★★</div>
+                <p class="text-xs text-slate-700 italic leading-relaxed">"Berkat platform PT Solusi Anugerah Teknologi, CV saya langsung lolos sistem HRD di perusahaan multinasional. Tampilannya sangat rapi dan profesional!"</p>
+                <div class="flex items-center gap-3 pt-2">
+                    <div class="w-10 h-10 bg-emerald-600 text-white rounded-full flex items-center justify-center font-bold text-xs">AN</div>
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-900">Ahmad Naufal</h4>
+                        <p class="text-[10px] text-slate-500">Data Analyst</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 space-y-4">
+                <div class="flex text-amber-400 text-sm">★★★★★</div>
+                <p class="text-xs text-slate-700 italic leading-relaxed">"Sangat membantu sekali! Gak perlu pusing mikirin format margin atau tata letak teks. Tinggal ketik data, langsung jadi dokumen siap kirim."</p>
+                <div class="flex items-center gap-3 pt-2">
+                    <div class="w-10 h-10 bg-slate-800 text-white rounded-full flex items-center justify-center font-bold text-xs">SR</div>
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-900">Siti Rahma</h4>
+                        <p class="text-[10px] text-slate-500">Marketing Executive</p>
+                    </div>
+                </div>
+            </div>
+            <div class="bg-white p-8 rounded-3xl shadow-xl shadow-slate-100 border border-slate-100 space-y-4">
+                <div class="flex text-amber-400 text-sm">★★★★★</div>
+                <p class="text-xs text-slate-700 italic leading-relaxed">"Sistem transisi dan preview instannya juara banget. Bisa lihat perubahan langsung secara real-time sebelum di-print ke PDF."</p>
+                <div class="flex items-center gap-3 pt-2">
+                    <div class="w-10 h-10 bg-emerald-700 text-white rounded-full flex items-center justify-center font-bold text-xs">DP</div>
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-900">Dandi Pratama</h4>
+                        <p class="text-[10px] text-slate-500">Software Engineer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400 py-12 border-t border-slate-800 text-center">
+        <p class="text-sm font-bold text-white">PT SOLUSI ANUGRAH TEKNOLOGI</p>
+        <p class="text-xs mt-1">Layanan Pembuatan CV Profesional dan Solusi Teknologi Terdepan.</p>
+        <p class="text-[10px] text-slate-600 mt-2">&copy; 2026 PT Solusi Anugerah Teknologi. All rights reserved.</p>
+    </footer>
+
+    <!-- SCRIPT TOMBOL SLIDER -->
+    <script>
+        function geserTemplate(arah) {
+            const slider = document.getElementById('slider-template');
+            const lebarCard = slider.clientWidth;
+            if (arah === 'kiri') {
+                slider.scrollBy({ left: -lebarCard, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: lebarCard, behavior: 'smooth' });
+            }
+        }
+    </script>
+</body>
+</html>
