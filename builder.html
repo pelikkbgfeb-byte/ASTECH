@@ -7,7 +7,7 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* Pengaturan khusus untuk cetak PDF ukuran A4 agar pas dan rapi */
+        /* Pengaturan cetak PDF: Auto-fit tinggi konten agar tidak ada sisa ruang kosong di bawah */
         @media print {
             body * {
                 visibility: hidden;
@@ -20,9 +20,10 @@
                 left: 0;
                 top: 0;
                 width: 210mm;
-                min-height: 297mm;
+                height: auto;
+                min-height: auto;
                 margin: 0;
-                padding: 20mm;
+                padding: 15mm;
                 box-shadow: none !important;
                 border: none !important;
             }
@@ -42,7 +43,7 @@
                 <span class="text-slate-300">|</span>
                 <span class="text-xs font-extrabold text-slate-800">PT SOLUSI ANUGRAH TEKNOLOGI - BUILDER</span>
             </div>
-            <div>
+            <div class="flex items-center gap-3">
                 <button onclick="window.print()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md transition">
                     🖨️ Cetak / Simpan PDF
                 </button>
@@ -53,79 +54,93 @@
     <!-- KONTROL UTAMA: FORM INPUT & LIVE PREVIEW -->
     <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
         
-        <!-- KOLOM KIRI: FORM INPUT DATA (TIDAK IKUT TERCETAK) -->
+        <!-- KOLOM KIRI: FORM INPUT & PILIH TEMPLATE (TIDAK IKUT TERCETAK) -->
         <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-6 no-print">
-            <h2 class="text-lg font-black text-slate-900 border-b pb-3">Isi Data CV Anda</h2>
+            <h2 class="text-lg font-black text-slate-900 border-b pb-3">Pilih Template & Isi Data CV</h2>
             
-            <div class="space-y-4">
+            <!-- PILIH TEMPLATE -->
+            <div>
+                <label class="block text-xs font-bold text-slate-700 mb-2">Pilih Desain Template</label>
+                <div class="grid grid-cols-2 gap-3">
+                    <button type="button" onclick="gantiTemplate('modern')" id="btn-modern" class="p-3 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition">
+                        Modern ATS
+                    </button>
+                    <button type="button" onclick="gantiTemplate('klasik')" id="btn-klasik" class="p-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition">
+                        Klasik Formal
+                    </button>
+                </div>
+            </div>
+
+            <div class="space-y-4 pt-2">
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap & Gelar</label>
-                    <input type="text" id="input-nama" value="Muh Anugerah" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <input type="text" id="input-nama" value="Arif Budiman, S.Kom" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Posisi / Pekerjaan</label>
-                        <input type="text" id="input-posisi" value="Web Developer" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <input type="text" id="input-posisi" value="Full Stack Software Engineer" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
                     </div>
                     <div>
-                        <label class="block text-xs font-bold text-slate-700 mb-1">Kontak (No HP / Email)</label>
-                        <input type="text" id="input-kontak" value="Makassar | 08123456789 | anugerah@email.com" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <label class="block text-xs font-bold text-slate-700 mb-1">Kontak (Kota | No HP | Email)</label>
+                        <input type="text" id="input-kontak" value="Jakarta | 081234567890 | arif@email.com" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Profil Singkat</label>
-                    <textarea id="input-profil" rows="2" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">Web Developer berpengalaman dalam membangun aplikasi web fungsional dan sistem digital mandiri.</textarea>
+                    <textarea id="input-profil" rows="2" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">Software Engineer berpengalaman dalam pengembangan web modern, optimasi performa sistem, serta penerapan arsitektur bersih yang ramah pemindai ATS.</textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Pengalaman Kerja</label>
-                    <textarea id="input-pengalaman" rows="3" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">• Lead Developer - PT Solusi Anugerah Teknologi (2025 - Sekarang)\n• Mengembangkan platform layanan digital dan sistem berbasis web.</textarea>
+                    <textarea id="input-pengalaman" rows="3" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">• Senior Web Developer - PT Teknologi Nusantara (2023 - Sekarang)
+• Memimpin pengembangan aplikasi web responsif menggunakan React dan Tailwind CSS.</textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Pendidikan</label>
-                    <input type="text" id="input-pendidikan" value="S1 Teknik Informatika - Universitas (2021 - 2025)" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <input type="text" id="input-pendidikan" value="S1 Teknik Informatika - Universitas Indonesia (2019 - 2023)" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Keahlian & Bahasa</label>
-                    <input type="text" id="input-keahlian" value="HTML, CSS, JavaScript, Tailwind, Git" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <input type="text" id="input-keahlian" value="JavaScript, TypeScript, React.js, Node.js, SQL, Git" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
                 </div>
             </div>
         </div>
 
-        <!-- KOLOM KANAN: LIVE PREVIEW KERTAS A4 -->
-        <div class="flex justify-center">
+        <!-- KOLOM KANAN: LIVE PREVIEW KERTAS A4 (AUTO HEIGHT) -->
+        <div class="flex justify-center items-start">
             <!-- KERTAS A4 PREVIEW -->
-            <div id="cv-preview" class="w-full max-w-[210mm] min-h-[297mm] bg-white p-8 sm:p-12 rounded-2xl shadow-xl border border-slate-200 font-serif text-slate-900 space-y-5">
+            <div id="cv-preview" class="w-full max-w-[210mm] bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-slate-200 font-serif text-slate-900 space-y-4">
                 
-                <!-- Header CV -->
-                <div class="text-center border-b-2 border-slate-900 pb-4">
-                    <h1 id="prev-nama" class="text-2xl font-bold uppercase tracking-wider">MUH ANUGRAH</h1>
-                    <p id="prev-posisi" class="text-xs font-bold uppercase tracking-widest text-slate-700 mt-1">WEB DEVELOPER</p>
-                    <p id="prev-kontak" class="text-[11px] text-slate-600 mt-1">Makassar | 08123456789 | anugerah@email.com</p>
+                <!-- HEADER TEMPLATE (AKAN BERUBAH SESUAI PILIHAN) -->
+                <div id="prev-header-container" class="text-center border-b-2 border-slate-900 pb-3">
+                    <h1 id="prev-nama" class="text-xl font-bold uppercase tracking-wider">ARIF BUDIMAN, S.KOM</h1>
+                    <p id="prev-posisi" class="text-[11px] font-bold uppercase tracking-widest text-slate-700 mt-0.5">FULL STACK SOFTWARE ENGINEER</p>
+                    <p id="prev-kontak" class="text-[10px] text-slate-600 mt-1">Jakarta | 081234567890 | arif@email.com</p>
                 </div>
 
                 <!-- Profil -->
                 <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider border-b border-slate-400 pb-1 mb-1.5">Profil Singkat</h3>
-                    <p id="prev-profil" class="text-[11px] leading-relaxed text-slate-800">Web Developer berpengalaman dalam membangun aplikasi web fungsional dan sistem digital mandiri.</p>
+                    <h3 id="prev-heading-profil" class="text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1">Tentang Saya</h3>
+                    <p id="prev-profil" class="text-[10px] leading-relaxed text-slate-800">Software Engineer berpengalaman dalam pengembangan web modern, optimasi performa sistem, serta penerapan arsitektur bersih yang ramah pemindai ATS.</p>
                 </div>
 
                 <!-- Pengalaman -->
                 <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider border-b border-slate-400 pb-1 mb-1.5">Riwayat Pengalaman</h3>
-                    <div id="prev-pengalaman" class="text-[11px] leading-relaxed text-slate-800 whitespace-pre-line">• Lead Developer - PT Solusi Anugerah Teknologi (2025 - Sekarang)
-• Mengembangkan platform layanan digital dan sistem berbasis web.</div>
+                    <h3 id="prev-heading-pengalaman" class="text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1">Pengalaman Kerja</h3>
+                    <div id="prev-pengalaman" class="text-[10px] leading-relaxed text-slate-800 whitespace-pre-line">• Senior Web Developer - PT Teknologi Nusantara (2023 - Sekarang)
+• Memimpin pengembangan aplikasi web responsif menggunakan React dan Tailwind CSS.</div>
                 </div>
 
                 <!-- Pendidikan -->
                 <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider border-b border-slate-400 pb-1 mb-1.5">Pendidikan</h3>
-                    <p id="prev-pendidikan" class="text-[11px] text-slate-800">S1 Teknik Informatika - Universitas (2021 - 2025)</p>
+                    <h3 id="prev-heading-pendidikan" class="text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1">Pendidikan</h3>
+                    <p id="prev-pendidikan" class="text-[10px] text-slate-800">S1 Teknik Informatika - Universitas Indonesia (2019 - 2023)</p>
                 </div>
 
                 <!-- Keahlian -->
                 <div>
-                    <h3 class="text-xs font-bold uppercase tracking-wider border-b border-slate-400 pb-1 mb-1.5">Keahlian</h3>
-                    <p id="prev-keahlian" class="text-[11px] text-slate-800">HTML, CSS, JavaScript, Tailwind, Git</p>
+                    <h3 id="prev-heading-keahlian" class="text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1">Keahlian</h3>
+                    <p id="prev-keahlian" class="text-[10px] text-slate-800">JavaScript, TypeScript, React.js, Node.js, SQL, Git</p>
                 </div>
 
             </div>
@@ -133,8 +148,44 @@
 
     </main>
 
-    <!-- SCRIPT LIVE UPDATE PREVIEW -->
+    <!-- SCRIPT LOGIKA LIVE PREVIEW & GANTI TEMPLATE -->
     <script>
+        let templateAktif = 'modern';
+
+        function gantiTemplate(jenis) {
+            templateAktif = jenis;
+            const headerContainer = document.getElementById('prev-header-container');
+            const hProfil = document.getElementById('prev-heading-profil');
+            const hPengalaman = document.getElementById('prev-heading-pengalaman');
+            const hPendidikan = document.getElementById('prev-heading-pendidikan');
+            const hKeahlian = document.getElementById('prev-heading-keahlian');
+
+            const btnModern = document.getElementById('btn-modern');
+            const btnKlasik = document.getElementById('btn-klasik');
+
+            if (jenis === 'modern') {
+                // Style Modern ATS (Tengah & Garis Bawah Tegas)
+                headerContainer.className = "text-center border-b-2 border-slate-900 pb-3";
+                hProfil.className = "text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1";
+                hPengalaman.className = "text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1";
+                hPendidikan.className = "text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1";
+                hKeahlian.className = "text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1";
+
+                btnModern.className = "p-3 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition";
+                btnKlasik.className = "p-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition";
+            } else {
+                // Style Klasik Formal (Rata Kiri dengan Garis Samping)
+                headerContainer.className = "border-l-4 border-slate-900 pl-3 py-1";
+                hProfil.className = "text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1";
+                hPengalaman.className = "text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1";
+                hPendidikan.className = "text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1";
+                hKeahlian.className = "text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1";
+
+                btnKlasik.className = "p-3 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition";
+                btnModern.className = "p-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition";
+            }
+        }
+
         function updatePreview() {
             document.getElementById('prev-nama').innerText = document.getElementById('input-nama').value;
             document.getElementById('prev-posisi').innerText = document.getElementById('input-posisi').value;
