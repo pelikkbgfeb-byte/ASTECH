@@ -7,11 +7,11 @@
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        /* Paksa mutlak jadi 1 halaman A4 penuh dan hilangkan sisa halaman */
+        /* Standar ATS: Font aman & Margin 1 inci (2.54 cm) */
         @media print {
             @page {
                 size: A4 portrait;
-                margin: 0mm;
+                margin: 2.54cm;
             }
             body, html {
                 width: 210mm;
@@ -19,7 +19,6 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 background: white !important;
-                overflow: hidden !important;
             }
             body * {
                 visibility: hidden;
@@ -33,9 +32,8 @@
                 top: 0 !important;
                 width: 210mm !important;
                 height: 297mm !important;
-                max-height: 297mm !important;
                 margin: 0 !important;
-                padding: 12mm 15mm !important;
+                padding: 0 !important;
                 box-shadow: none !important;
                 border: none !important;
                 background: white !important;
@@ -57,7 +55,7 @@
                 <span class="text-slate-300">|</span>
                 <span class="text-xs font-extrabold text-slate-800">PT SOLUSI ANUGRAH TEKNOLOGI - BUILDER</span>
             </div>
-            <div class="flex items-center gap-3">
+            <div>
                 <button onclick="window.print()" class="bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-xs font-bold shadow-md transition">
                     🖨️ Cetak / Simpan PDF
                 </button>
@@ -65,14 +63,13 @@
         </div>
     </header>
 
-    <!-- KONTROL UTAMA: FORM INPUT & LIVE PREVIEW -->
+    <!-- KONTROL UTAMA -->
     <main class="max-w-7xl mx-auto px-4 py-8 grid grid-cols-1 lg:grid-cols-2 gap-8 no-print">
         
-        <!-- KOLOM KIRI: FORM KOSONG & PILIH TEMPLATE -->
+        <!-- KOLOM KIRI: FORM INPUT -->
         <div class="bg-white p-6 rounded-3xl shadow-sm border border-slate-200 space-y-6">
             <h2 class="text-lg font-black text-slate-900 border-b pb-3">Pilih Template & Isi Data CV</h2>
             
-            <!-- PILIH TEMPLATE -->
             <div>
                 <label class="block text-xs font-bold text-slate-700 mb-2">Pilih Desain Template</label>
                 <div class="grid grid-cols-2 gap-3">
@@ -87,72 +84,71 @@
 
             <div class="space-y-4 pt-2">
                 <div>
-                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap & Gelar</label>
-                    <input type="text" id="input-nama" placeholder="Contoh: Budi Santoso, S.Kom" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <label class="block text-xs font-bold text-slate-700 mb-1">Nama Lengkap & Gelar (14-16 pt)</label>
+                    <input type="text" id="input-nama" placeholder="Contoh: Budi Santoso, S.Kom" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Posisi / Pekerjaan</label>
-                        <input type="text" id="input-posisi" placeholder="Contoh: Frontend Developer" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <input type="text" id="input-posisi" placeholder="Contoh: Frontend Developer" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500">
                     </div>
                     <div>
                         <label class="block text-xs font-bold text-slate-700 mb-1">Kontak (Kota | No HP | Email)</label>
-                        <input type="text" id="input-kontak" placeholder="Makassar | 0812xxxx | email@domain.com" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <input type="text" id="input-kontak" placeholder="Makassar | 0812xxxx | email@domain.com" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500">
                     </div>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Profil Singkat</label>
-                    <textarea id="input-profil" rows="2" placeholder="Tuliskan ringkasan profesional Anda di sini..." oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                    <textarea id="input-profil" rows="2" placeholder="Tuliskan ringkasan profesional Anda..." oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Pengalaman Kerja</label>
-                    <textarea id="input-pengalaman" rows="3" placeholder="• Posisi - Nama Perusahaan (Tahun)&#10;• Deskripsi pekerjaan..." oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none"></textarea>
+                    <textarea id="input-pengalaman" rows="3" placeholder="• Posisi - Perusahaan (Tahun)&#10;• Deskripsi tugas..." oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Pendidikan</label>
-                    <input type="text" id="input-pendidikan" placeholder="Contoh: S1 - Nama Universitas (Tahun)" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <input type="text" id="input-pendidikan" placeholder="Contoh: S1 - Universitas (Tahun)" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500">
                 </div>
                 <div>
                     <label class="block text-xs font-bold text-slate-700 mb-1">Keahlian & Bahasa</label>
-                    <input type="text" id="input-keahlian" placeholder="Contoh: JavaScript, HTML, CSS, Git" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm focus:ring-2 focus:ring-emerald-500 outline-none">
+                    <input type="text" id="input-keahlian" placeholder="Contoh: JavaScript, HTML, CSS, Bahasa Inggris" oninput="updatePreview()" class="w-full px-3 py-2 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-emerald-500">
                 </div>
             </div>
         </div>
 
-        <!-- KOLOM KANAN: LIVE PREVIEW KERTAS A4 -->
+        <!-- KOLOM KANAN: LIVE PREVIEW (Standar Margin 1 Inci / 2.54cm) -->
         <div class="flex justify-center items-start">
-            <!-- KERTAS A4 PREVIEW -->
-            <div id="cv-preview" class="w-full max-w-[210mm] min-h-[297mm] bg-white p-8 sm:p-10 rounded-2xl shadow-xl border border-slate-200 font-serif text-slate-900 space-y-4">
+            <div id="cv-preview" class="w-full max-w-[210mm] min-h-[297mm] bg-white p-[2.54cm] shadow-xl border border-slate-200 font-sans text-slate-900 space-y-4">
                 
-                <!-- HEADER TEMPLATE -->
+                <!-- HEADER (Nama 15pt, Heading 12pt, Isi 11pt, Spasi 1.15) -->
                 <div id="prev-header-container" class="text-center border-b-2 border-slate-900 pb-3">
-                    <h1 id="prev-nama" class="text-xl font-bold uppercase tracking-wider text-slate-400">NAMA LENGKAP</h1>
-                    <p id="prev-posisi" class="text-[11px] font-bold uppercase tracking-widest text-slate-400 mt-0.5">POSISI / PROFESI</p>
-                    <p id="prev-kontak" class="text-[10px] text-slate-400 mt-1">Kota | No HP | Email</p>
+                    <h1 id="prev-nama" class="text-[15pt] font-bold uppercase tracking-wide text-slate-400 leading-snug">NAMA LENGKAP</h1>
+                    <p id="prev-posisi" class="text-[12pt] font-semibold uppercase tracking-wider text-slate-400 mt-1">POSISI / PROFESI</p>
+                    <p id="prev-kontak" class="text-[10pt] text-slate-400 mt-1">Kota | No HP | Email</p>
                 </div>
 
                 <!-- Profil -->
                 <div>
-                    <h3 id="prev-heading-profil" class="text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1">Tentang Saya</h3>
-                    <p id="prev-profil" class="text-[10px] leading-relaxed text-slate-400 italic">Belum diisi...</p>
+                    <h3 id="prev-heading-profil" class="text-[12pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Tentang Saya</h3>
+                    <p id="prev-profil" class="text-[11pt] leading-[1.15] text-slate-400 italic">Belum diisi...</p>
                 </div>
 
                 <!-- Pengalaman -->
                 <div>
-                    <h3 id="prev-heading-pengalaman" class="text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1">Pengalaman Kerja</h3>
-                    <div id="prev-pengalaman" class="text-[10px] leading-relaxed text-slate-400 italic whitespace-pre-line">Belum diisi...</div>
+                    <h3 id="prev-heading-pengalaman" class="text-[12pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Pengalaman Kerja</h3>
+                    <div id="prev-pengalaman" class="text-[11pt] leading-[1.15] text-slate-400 italic whitespace-pre-line">Belum diisi...</div>
                 </div>
 
                 <!-- Pendidikan -->
                 <div>
-                    <h3 id="prev-heading-pendidikan" class="text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1">Pendidikan</h3>
-                    <p id="prev-pendidikan" class="text-[10px] text-slate-400 italic">Belum diisi...</p>
+                    <h3 id="prev-heading-pendidikan" class="text-[12pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Pendidikan</h3>
+                    <p id="prev-pendidikan" class="text-[11pt] leading-[1.15] text-slate-400 italic">Belum diisi...</p>
                 </div>
 
                 <!-- Keahlian -->
                 <div>
-                    <h3 id="prev-heading-keahlian" class="text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1">Keahlian</h3>
-                    <p id="prev-keahlian" class="text-[10px] text-slate-400 italic">Belum diisi...</p>
+                    <h3 id="prev-heading-keahlian" class="text-[12pt] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1.5 text-slate-900">Keahlian & Bahasa</h3>
+                    <p id="prev-keahlian" class="text-[11pt] leading-[1.15] text-slate-400 italic">Belum diisi...</p>
                 </div>
 
             </div>
@@ -160,37 +156,19 @@
 
     </main>
 
-    <!-- SCRIPT LOGIKA LIVE PREVIEW & GANTI TEMPLATE -->
+    <!-- SCRIPT LOGIKA -->
     <script>
-        let templateAktif = 'modern';
-
         function gantiTemplate(jenis) {
-            templateAktif = jenis;
             const headerContainer = document.getElementById('prev-header-container');
-            const hProfil = document.getElementById('prev-heading-profil');
-            const hPengalaman = document.getElementById('prev-heading-pengalaman');
-            const hPendidikan = document.getElementById('prev-heading-pendidikan');
-            const hKeahlian = document.getElementById('prev-heading-keahlian');
-
             const btnModern = document.getElementById('btn-modern');
             const btnKlasik = document.getElementById('btn-klasik');
 
             if (jenis === 'modern') {
                 headerContainer.className = "text-center border-b-2 border-slate-900 pb-3";
-                hProfil.className = "text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1";
-                hPengalaman.className = "text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1";
-                hPendidikan.className = "text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1";
-                hKeahlian.className = "text-[11px] font-bold uppercase tracking-wider border-b border-slate-400 pb-0.5 mb-1";
-
                 btnModern.className = "p-3 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition";
                 btnKlasik.className = "p-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition";
             } else {
-                headerContainer.className = "border-l-4 border-slate-900 pl-3 py-1";
-                hProfil.className = "text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1";
-                hPengalaman.className = "text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1";
-                hPendidikan.className = "text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1";
-                hKeahlian.className = "text-[11px] font-bold uppercase tracking-wider bg-slate-100 text-slate-900 p-1 mb-1";
-
+                headerContainer.className = "border-l-4 border-slate-900 pl-3 py-1 text-left";
                 btnKlasik.className = "p-3 rounded-2xl border-2 border-emerald-600 bg-emerald-50 text-emerald-800 text-xs font-bold transition";
                 btnModern.className = "p-3 rounded-2xl border-2 border-slate-200 bg-white text-slate-700 text-xs font-bold transition";
             }
@@ -213,26 +191,26 @@
             const elPendidikan = document.getElementById('prev-pendidikan');
             const elKeahlian = document.getElementById('prev-keahlian');
 
-            if(nama) { elNama.innerText = nama; elNama.className = "text-xl font-bold uppercase tracking-wider text-slate-900"; } 
-            else { elNama.innerText = "NAMA LENGKAP"; elNama.className = "text-xl font-bold uppercase tracking-wider text-slate-400"; }
+            if(nama) { elNama.innerText = nama; elNama.className = "text-[15pt] font-bold uppercase tracking-wide text-slate-900 leading-snug"; } 
+            else { elNama.innerText = "NAMA LENGKAP"; elNama.className = "text-[15pt] font-bold uppercase tracking-wide text-slate-400 leading-snug"; }
 
-            if(posisi) { elPosisi.innerText = posisi; elPosisi.className = "text-[11px] font-bold uppercase tracking-widest text-slate-700 mt-0.5"; } 
-            else { elPosisi.innerText = "POSISI / PROFESI"; elPosisi.className = "text-[11px] font-bold uppercase tracking-widest text-slate-400 mt-0.5"; }
+            if(posisi) { elPosisi.innerText = posisi; elPosisi.className = "text-[12pt] font-semibold uppercase tracking-wider text-slate-700 mt-1"; } 
+            else { elPosisi.innerText = "POSISI / PROFESI"; elPosisi.className = "text-[12pt] font-semibold uppercase tracking-wider text-slate-400 mt-1"; }
 
-            if(kontak) { elKontak.innerText = kontak; elKontak.className = "text-[10px] text-slate-600 mt-1"; } 
-            else { elKontak.innerText = "Kota | No HP | Email"; elKontak.className = "text-[10px] text-slate-400 mt-1"; }
+            if(kontak) { elKontak.innerText = kontak; elKontak.className = "text-[10pt] text-slate-600 mt-1"; } 
+            else { elKontak.innerText = "Kota | No HP | Email"; elKontak.className = "text-[10pt] text-slate-400 mt-1"; }
 
-            if(profil) { elProfil.innerText = profil; elProfil.className = "text-[10px] leading-relaxed text-slate-800"; } 
-            else { elProfil.innerText = "Belum diisi..."; elProfil.className = "text-[10px] leading-relaxed text-slate-400 italic"; }
+            if(profil) { elProfil.innerText = profil; elProfil.className = "text-[11pt] leading-[1.15] text-slate-800"; } 
+            else { elProfil.innerText = "Belum diisi..."; elProfil.className = "text-[11pt] leading-[1.15] text-slate-400 italic"; }
 
-            if(pengalaman) { elPengalaman.innerText = pengalaman; elPengalaman.className = "text-[10px] leading-relaxed text-slate-800 whitespace-pre-line"; } 
-            else { elPengalaman.innerText = "Belum diisi..."; elPengalaman.className = "text-[10px] leading-relaxed text-slate-400 italic"; }
+            if(pengalaman) { elPengalaman.innerText = pengalaman; elPengalaman.className = "text-[11pt] leading-[1.15] text-slate-800 whitespace-pre-line"; } 
+            else { elPengalaman.innerText = "Belum diisi..."; elPengalaman.className = "text-[11pt] leading-[1.15] text-slate-400 italic"; }
 
-            if(pendidikan) { elPendidikan.innerText = pendidikan; elPendidikan.className = "text-[10px] text-slate-800"; } 
-            else { elPendidikan.innerText = "Belum diisi..."; elPendidikan.className = "text-[10px] text-slate-400 italic"; }
+            if(pendidikan) { elPendidikan.innerText = pendidikan; elPendidikan.className = "text-[11pt] leading-[1.15] text-slate-800"; } 
+            else { elPendidikan.innerText = "Belum diisi..."; elPendidikan.className = "text-[11pt] leading-[1.15] text-slate-400 italic"; }
 
-            if(keahlian) { elKeahlian.innerText = keahlian; elKeahlian.className = "text-[10px] text-slate-800"; } 
-            else { elKeahlian.innerText = "Belum diisi..."; elKeahlian.className = "text-[10px] text-slate-400 italic"; }
+            if(keahlian) { elKeahlian.innerText = keahlian; elKeahlian.className = "text-[11pt] leading-[1.15] text-slate-800"; } 
+            else { elKeahlian.innerText = "Belum diisi..."; elKeahlian.className = "text-[11pt] leading-[1.15] text-slate-400 italic"; }
         }
     </script>
 </body>
